@@ -1,6 +1,6 @@
 'use strict'
 
-import { listarCursos } from "./cursosApi";
+import { listarCursos } from "./cursosApi.js";
 
 let {cursos} = await listarCursos();
 
