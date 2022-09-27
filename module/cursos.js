@@ -30,8 +30,8 @@ const getCursos = () => {
     return listaCursos
 }
 
-const getCursosByName = (id) => {
-    let nomeCurso = id;
+const getCursosByName = (idCurso) => {
+    let nomeCurso = idCurso;
     let listaDosCursos = []
 
     cursos.forEach(item => {

@@ -11,7 +11,7 @@ const bodyParser = require('body-parser')
 const app = express();
 
 //import das funcoes utilizadas
-const {alunosFilter, getAlunos, getAlunoCurso, getAlunoDisciplina, alunoAno, alunoStatus} = require('./module/alunos.js');
+const {alunosFilter, getAlunos, AlunoCurso, getAlunoByCurso, alunoAno, alunoStatus} = require('./module/alunos.js');
 const {getCursos, getCursosByName} = require('./module/cursos.js');
 const { response } = require('express');
 
@@ -29,9 +29,9 @@ app.use((request, response, next) => {
 });
 
 app.get('/alunos/curso/:status/:cursando', cors(), async function(request, response, next){
-    let id = request.params.status;
+    let idStatus = request.params.status;
     let cursoNome = request.params.cursando;
-    let statusAluno = alunoStatus(id, cursoNome);
+    let statusAluno = alunoStatus(idStatus, cursoNome);
     let statusJson = {}
 
     if(statusAluno){
@@ -47,8 +47,8 @@ app.get('/alunos/curso/:status/:cursando', cors(), async function(request, respo
 
 //EndPoint: Busca aluno pela matricula // status: Funcionando
 app.get('/aluno/:matriculaAluno', cors(), async function(request, response, next){
-    let id = request.params.matriculaAluno;
-    let aluno = alunosFilter(id);
+    let idAluno = request.params.matriculaAluno;
+    let aluno = alunosFilter(idAluno);
     let alunoDescricao = {}
 
     if (aluno) {
@@ -78,8 +78,8 @@ app.get('/alunos', cors(), async function(request, response, next){
 
 //EndPoint: Mostra todas as informacoes do curso do aluno // Funcionando
 app.get('/disciplinas/:matriculaAluno', cors(), async function(request, response, next){
-    let id = request.params.matriculaAluno;
-    let aluno = getAlunoCurso(id);
+    let idGetInfoCurso = request.params.matriculaAluno;
+    let aluno = AlunoCurso(idGetInfoCurso);
     let alunoInfoCurso = {}
 
     if (aluno) {
@@ -94,8 +94,8 @@ app.get('/disciplinas/:matriculaAluno', cors(), async function(request, response
 
 //EndPoint: Filtra os alunos pelo Curso // status
 app.get('/disciplina/:disciplinaAluno', cors(), async function(request, response, next){
-    let id = request.params.disciplinaAluno;
-    let disciplina = getAlunoDisciplina(id);
+    let idAlunoCurso = request.params.disciplinaAluno;
+    let disciplina = getAlunoByCurso(idAlunoCurso);
     let infoDisciplina = {}
 
     if (disciplina) {
@@ -109,8 +109,8 @@ app.get('/disciplina/:disciplinaAluno', cors(), async function(request, response
 
 //EndPoint: Filtra alunos pelo ano
 app.get('/conclusao/:anoDeConclusao', cors(), async function(request, response, next){
-    let id = request.params.anoDeConclusao;
-    let ano = alunoAno(id);
+    let idAnoConclusao = request.params.anoDeConclusao;
+    let ano = alunoAno(idAnoConclusao);
     let jsonAno = {};
 
     if (ano) {
@@ -140,8 +140,8 @@ app.get('/cursos', cors(), async function(request, response, next){
 
 // Lista o curso pelo nome 
 app.get('/curso/:nomeCurso', cors(), async function(request, response, next){
-    let id = request.params.nomeCurso
-    let cursos = getCursosByName(id)
+    let idCurso = request.params.nomeCurso
+    let cursos = getCursosByName(idCurso)
     let jsonCursosNomes = {}
 
     if (cursos) {
@@ -154,6 +154,6 @@ app.get('/curso/:nomeCurso', cors(), async function(request, response, next){
 })
 
 
-app.listen(3030, function(){
+app.listen(5050, function(){
     console.log('Servidor aguardando requisicoes');
 })

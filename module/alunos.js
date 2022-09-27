@@ -687,8 +687,8 @@ var alunos = [
 ];
 
 //Function para filtrar os alunos pela matricula // status: Funcionando
-const alunosFilter = (id) => {
-    let matriculaAluno = id;
+const alunosFilter = (idAluno) => {
+    let matriculaAluno = idAluno;
     let erro = true;
     let listaAlunos = []
 
@@ -735,8 +735,8 @@ const getAlunos = () => {
 }
 
 //Function para mostrar o curso/disciplina do aluno // status: Funcionando
-const getAlunoCurso = (id = '') => {
-    let matriculaAluno = id;
+const AlunoCurso = (idGetInfoCurso = '') => {
+    let matriculaAluno = idGetInfoCurso;
     let erro = true
     let descricaoDisciplina = [];
 
@@ -747,6 +747,7 @@ const getAlunoCurso = (id = '') => {
                     descricaoDisciplina.push(
                         {
                             nomeAluno: item.nome,
+                            fotoAluno: item.foto,
                             nomeCurso: i.nome,
                             nomeDisciplina: info.nome,
                             media: info.media,
@@ -766,15 +767,17 @@ const getAlunoCurso = (id = '') => {
     }
 }
 
+console.log(AlunoCurso('20151001001'));
+
 //Pegar/Mostrar aluno de cada curso // status: Funcionando
-const getAlunoDisciplina = (id) => {
-    let disciplinaAluno = id.toUpperCase();
+const getAlunoByCurso = (idAlunoCurso) => {
+    let cursoAluno = idAlunoCurso.toUpperCase();
     let erro = true;
-    let listAlunoDisciplina = [];
+    let listAlunoCurso = [];
 
     alunos.forEach(item => {
         item.curso.forEach(info => {
-            if (info.nome.toUpperCase().includes(disciplinaAluno.toUpperCase())) {
+            if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase())) {
                 let aluno = {}
 
                 aluno.fotoAluno = item.foto
@@ -783,7 +786,7 @@ const getAlunoDisciplina = (id) => {
                 aluno.sexoAluno = item.sexo
                 aluno.nomeCursoAluno = info.nome
                 aluno.statusAluno = item.status
-                listAlunoDisciplina.push(aluno)
+                listAlunoCurso.push(aluno)
 
                 erro = false
             }
@@ -792,15 +795,15 @@ const getAlunoDisciplina = (id) => {
     if (erro) {
         return false
     } else {
-        return listAlunoDisciplina
+        return listAlunoCurso
     }
 }
 
 //Fazer uma Function para filtrar os anos de conclusao!!!!!!!!!!!!!
 
 //Function para filtrar alunos pelo ano de conclusao 
-const alunoAno = (id) => {
-    let anoDeConclusao = id;
+const alunoAno = (idAnoConclusao) => {
+    let anoDeConclusao = idAnoConclusao;
     let erro = true;
     let listAlunosByAno = [];
 
@@ -829,12 +832,12 @@ const alunoAno = (id) => {
 
 // alunoStatus('finalizado', 'desenvolvimento')
 
-const alunoStatus = (id, cursoNome) =>{
-    let status = id;
+const alunoStatus = (idStatus, cursoNome) =>{
+    let status = idStatus;
     let curso = cursoNome;
     let erro = true;
     let listAlunoByStatus = [];
-    let alunosCurso = getAlunoDisciplina(curso);
+    let alunosCurso = getAlunoByCurso(curso);
 
     if (typeof (status) != 'undefined') {
         alunosCurso.forEach(item =>{
@@ -857,12 +860,42 @@ const alunoStatus = (id, cursoNome) =>{
 }
 
 module.exports = {
-    alunosFilter, getAlunos, getAlunoCurso,
-    getAlunoDisciplina, alunoAno, alunoStatus
+    alunosFilter, getAlunos, AlunoCurso,
+    getAlunoByCurso, alunoAno, alunoStatus
 }
 
-console.log(alunoStatus('cursando', 'redes'));
+console.log()
+console.log(alunoStatus('finalizado', 'desenvolvimento'));
 
 
 // console.log(getAlunoCurso('20151001002'));
 
+/* //Pegar/Mostrar aluno de cada curso // status: Funcionando
+const getAlunoDisciplina = (id) => {
+    let disciplinaAluno = id.toUpperCase();
+    let erro = true;
+    let listAlunoDisciplina = [];
+
+    alunos.forEach(item => {
+        item.curso.forEach(info => {
+            if (info.nome.toUpperCase().includes(disciplinaAluno.toUpperCase())) {
+                let aluno = {}
+
+                aluno.fotoAluno = item.foto
+                aluno.nomeAluno = item.nome
+                aluno.matriculaAluno =  item.matricula
+                aluno.sexoAluno = item.sexo
+                aluno.nomeCursoAluno = info.nome
+                aluno.statusAluno = item.status
+                listAlunoDisciplina.push(aluno)
+
+                erro = false
+            }
+        })
+    })
+    if (erro) {
+        return false
+    } else {
+        return listAlunoDisciplina
+    }
+} */

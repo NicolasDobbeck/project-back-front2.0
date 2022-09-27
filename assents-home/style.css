@@ -102,34 +102,56 @@ main{
     align-items: center;
 }
 
-.container-courses{
+ .container-courses{
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     gap: 30px;
+}
+
+/* .container-courses :hover{
     
-}
+}  */
 
-.container-courses :hover{
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-    transition: all 700ms ease-in-out;
-}
-
-.courses-ds{
+/* .courses-ds{
     display: flex;
     width: 400px;
     height: 200px;
     background-color: #3347B0;
 }
-
-
 
 .courses-rds{
     display: flex;
     width: 400px;
     height: 200px;
     background-color: #3347B0;
+} */
+
+.cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3347B0;
+    width: 400px;
+    height: 200px;
+    /* gap: 12px; */
+    color: white;
+}
+
+.cards i {
+    font-size: 76px;
+}
+
+.cards span {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 76px;
+    font-weight: 500;
+}
+
+.curso-icone{
+    height: 50px;
 }
 
 /* Codigo do rodape */
