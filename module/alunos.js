@@ -734,7 +734,7 @@ const getAlunos = () => {
     return listaDeTodosAlunos
 }
 
-//Function para mostrar o curso/disciplina do aluno // status: Funcionando
+//Function para mostrar o curso/disciplinas do aluno // status: Funcionando
 const AlunoCurso = (idGetInfoCurso = '') => {
     let matriculaAluno = idGetInfoCurso;
     let erro = true
@@ -767,7 +767,7 @@ const AlunoCurso = (idGetInfoCurso = '') => {
     }
 }
 
-console.log(AlunoCurso('20151001001'));
+// console.log(AlunoCurso('20151001001'));
 
 //Pegar/Mostrar aluno de cada curso // status: Funcionando
 const getAlunoByCurso = (idAlunoCurso) => {
@@ -777,15 +777,15 @@ const getAlunoByCurso = (idAlunoCurso) => {
 
     alunos.forEach(item => {
         item.curso.forEach(info => {
-            if (info.nome.toUpperCase().includes(cursoAluno.toUpperCase())) {
+            if (cursoAluno.toLowerCase() == info.sigla.toLowerCase()) {
                 let aluno = {}
 
-                aluno.fotoAluno = item.foto
-                aluno.nomeAluno = item.nome
-                aluno.matriculaAluno =  item.matricula
-                aluno.sexoAluno = item.sexo
-                aluno.nomeCursoAluno = info.nome
-                aluno.statusAluno = item.status
+                aluno.foto = item.foto
+                aluno.nome = item.nome
+                aluno.matricula =  item.matricula
+                aluno.sexo = item.sexo
+                aluno.nomeCurso = info.nome
+                aluno.status = item.status
                 listAlunoCurso.push(aluno)
 
                 erro = false
@@ -832,26 +832,31 @@ const alunoAno = (idAnoConclusao) => {
 
 // alunoStatus('finalizado', 'desenvolvimento')
 
-const alunoStatus = (idStatus, cursoNome) =>{
-    let status = idStatus;
-    let curso = cursoNome;
+
+
+
+
+const alunoStatus = (status, objeto) =>{
+    let statusAluno = status
+    let siglaCurso = objeto
     let erro = true;
     let listAlunoByStatus = [];
-    let alunosCurso = getAlunoByCurso(curso);
+    let array = getAlunoByCurso(siglaCurso)
 
-    if (typeof (status) != 'undefined') {
-        alunosCurso.forEach(item =>{
-            if (item.statusAluno.toLowerCase().includes(status.toLowerCase())) {
-                let condicao = {}
 
-                condicao.fotoAluno = item.fotoAluno
-                condicao.nomeAluno = item.nomeAluno
 
-                listAlunoByStatus.push(condicao)
-                erro = false
-            }
-        })
-    }
+    array.forEach(item =>{
+        if(status.toLowerCase().includes(statusAluno.toLowerCase())){
+            let json = {}
+            
+            json.foto = item.foto
+            json.nome = item.nome
+
+            listAlunoByStatus.push(json)
+
+            erro = false
+        }
+    })
     if (erro) {
         return false
     } else{
@@ -859,43 +864,80 @@ const alunoStatus = (idStatus, cursoNome) =>{
     }
 }
 
+console.log(alunoStatus('cursando', 'rds'));
+
+
+
+
+
+
 module.exports = {
     alunosFilter, getAlunos, AlunoCurso,
     getAlunoByCurso, alunoAno, alunoStatus
 }
 
-console.log()
-console.log(alunoStatus('finalizado', 'desenvolvimento'));
 
+
+
+
+
+
+
+// const alunoStatus = (idStatus, cursoNome) =>{
+//     let status = idStatus;
+//     let curso = cursoNome;
+//     let erro = true;
+//     let listAlunoByStatus = [];
+//     let alunosCurso = getAlunoByCurso(curso);
+
+//     if (typeof (status) != 'undefined') {
+//         alunosCurso.forEach(item => {
+//             if (item.statusAluno.toLowerCase().includes(status.toLowerCase())) {
+//                 let condicao = {}
+
+//                 condicao.fotoAluno = item.fotoAluno
+//                 condicao.nomeAluno = item.nomeAluno
+
+//                 listAlunoByStatus.push(condicao)
+//                 erro = false
+//             }
+//         })
+//     }
+//     if (erro) {
+//         return false
+//     } else{
+//         return listAlunoByStatus
+//     }
+// }
 
 // console.log(getAlunoCurso('20151001002'));
 
-/* //Pegar/Mostrar aluno de cada curso // status: Funcionando
-const getAlunoDisciplina = (id) => {
-    let disciplinaAluno = id.toUpperCase();
-    let erro = true;
-    let listAlunoDisciplina = [];
+// ///Pegar/Mostrar aluno de cada curso // status: Funcionando
+// const getAlunoDisciplina = (id) => {
+//     let disciplinaAluno = id.toUpperCase();
+//     let erro = true;
+//     let listAlunoDisciplina = [];
 
-    alunos.forEach(item => {
-        item.curso.forEach(info => {
-            if (info.nome.toUpperCase().includes(disciplinaAluno.toUpperCase())) {
-                let aluno = {}
+//     alunos.forEach(item => {
+//         item.curso.forEach(info => {
+//             if (info.nome.toUpperCase().includes(disciplinaAluno.toUpperCase())) {
+//                 let aluno = {}
 
-                aluno.fotoAluno = item.foto
-                aluno.nomeAluno = item.nome
-                aluno.matriculaAluno =  item.matricula
-                aluno.sexoAluno = item.sexo
-                aluno.nomeCursoAluno = info.nome
-                aluno.statusAluno = item.status
-                listAlunoDisciplina.push(aluno)
+//                 aluno.fotoAluno = item.foto
+//                 aluno.nomeAluno = item.nome
+//                 aluno.matriculaAluno =  item.matricula
+//                 aluno.sexoAluno = item.sexo
+//                 aluno.nomeCursoAluno = info.nome
+//                 aluno.statusAluno = item.status
+//                 listAlunoDisciplina.push(aluno)
 
-                erro = false
-            }
-        })
-    })
-    if (erro) {
-        return false
-    } else {
-        return listAlunoDisciplina
-    }
-} */
+//                 erro = false
+//             }
+//         })
+//     })
+//     if (erro) {
+//         return false
+//     } else {
+//         return listAlunoDisciplina
+//     }
+// } 

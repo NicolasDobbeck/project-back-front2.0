@@ -12,6 +12,7 @@ console.log(cursos); */
 
 import { listarCursos } from "./cursosApi.js";
 
+
 let { cursos } = await listarCursos();
 
 console.log(cursos);
@@ -23,7 +24,7 @@ const criarCards = (indice) => {
     cards.id = indice.sigla.toLowerCase();
 
     const icone = document.createElement('img');
-    icone.classList.add('curso-icone');
+    icone.classList.add('curso-icon');
     icone.src = indice.icone;
 
     const sigla = document.createElement('span');
@@ -41,7 +42,7 @@ const criarCards = (indice) => {
 
         localStorage.setItem('curso', idCurso);
 
-        location.href = './module/assets/html/class.html';
+        location.href = '../student-page/index.html';
     });
 }
 

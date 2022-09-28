@@ -72,13 +72,11 @@ main{
     display: flex;
     height: 100%;
     width: 100%;
-    flex-direction: row;
     justify-content: space-between;
 }
 
 .container-title-device{
     display: flex;
-    flex-direction: column;
     gap: 55px;
     justify-content: center;
 }
@@ -110,34 +108,26 @@ main{
     gap: 30px;
 }
 
-/* .container-courses :hover{
+.cursos{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
     
-}  */
-
-/* .courses-ds{
-    display: flex;
-    width: 400px;
-    height: 200px;
-    background-color: #3347B0;
 }
-
-.courses-rds{
-    display: flex;
-    width: 400px;
-    height: 200px;
-    background-color: #3347B0;
-} */
 
 .cards {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #3347B0;
     width: 400px;
     height: 200px;
-    /* gap: 12px; */
+    gap: 15px;
     color: white;
+    background-color: #3347B0;
+    border-radius: 5px;
 }
+
+
 
 .cards i {
     font-size: 76px;
@@ -150,9 +140,13 @@ main{
     font-weight: 500;
 }
 
-.curso-icone{
+.curso-icon{
     height: 50px;
 }
+
+/* Card dos Alunos */
+
+alui
 
 /* Codigo do rodape */
 footer{
