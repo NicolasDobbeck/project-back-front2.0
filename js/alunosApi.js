@@ -1,5 +1,7 @@
 'use strict'
 
+
+
 // mostrar alunos do mesmo curso
 const mostrarAlunosCurso = async (disciplina) =>{
     const url = `http://localhost:5050/disciplina/${disciplina}`
@@ -9,6 +11,16 @@ const mostrarAlunosCurso = async (disciplina) =>{
     return data
 }
 
+const listarCursosTitle = async () => {
+    const url = `http://localhost:5050/cursos`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    return data;
+}
+
+
+
 export{
-    mostrarAlunosCurso
+    mostrarAlunosCurso, listarCursosTitle
 }

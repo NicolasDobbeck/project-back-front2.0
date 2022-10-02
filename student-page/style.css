@@ -62,7 +62,10 @@ header{
 /* Codigo do main */
 main{
     display: flex;
-    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .dropdown-subtitle{
@@ -145,6 +148,13 @@ main{
     font-family: 'Roboto', sans-serif;
     color: #3347B0;
 }
+
+.card-aluno{
+display: flex;
+flex-grow: 4;
+align-items: center;
+}
+
 
 /* Codigo do rodape */
 footer{
