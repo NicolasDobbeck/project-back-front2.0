@@ -66,6 +66,7 @@ main{
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    flex-grow: 4;
 }
 
 .dropdown-subtitle{
@@ -149,10 +150,70 @@ main{
     color: #3347B0;
 }
 
+.title{
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 50px;
+    color: #3347B0;
+    margin-top: 1%;
+}
+
 .card-aluno{
-display: flex;
-flex-grow: 4;
-align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 80px;
+}
+
+.card{
+    display: flex;
+    height: 300px;
+    width: 200px;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+.card-azul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3347B0;
+    max-width: 500px;
+    max-height: 300px;
+    flex-direction: column;
+}
+
+.card-azul img{
+    display: flex;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+
+.card-amarelo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E5B657;
+    max-width: 500px;
+    max-height: 300px;
+    flex-direction: column;
+}
+
+.card-amarelo img{
+    display: flex;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 

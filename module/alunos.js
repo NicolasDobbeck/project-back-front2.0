@@ -799,6 +799,8 @@ const getAlunoByCurso = (idAlunoCurso) => {
     }
 }
 
+console.log(getAlunoByCurso('rds'));
+
 //Fazer uma Function para filtrar os anos de conclusao!!!!!!!!!!!!!
 
 //Function para filtrar alunos pelo ano de conclusao 

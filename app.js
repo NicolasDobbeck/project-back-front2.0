@@ -93,8 +93,8 @@ app.get('/disciplinas/:matriculaAluno', cors(), async function(request, response
 })
 
 //EndPoint: Filtra os alunos pelo Curso // status
-app.get('/disciplina/:disciplinaAluno', cors(), async function(request, response, next){
-    let idAlunoCurso = request.params.disciplinaAluno;
+app.get('/curso/:cursoAluno', cors(), async function(request, response, next){
+    let idAlunoCurso = request.params.cursoAluno;
     let disciplina = getAlunoByCurso(idAlunoCurso);
     let infoDisciplina = {}
 
@@ -157,3 +157,24 @@ app.get('/curso/:nomeCurso', cors(), async function(request, response, next){
 app.listen(5050, function(){
     console.log('Servidor aguardando requisicoes');
 })
+
+
+
+
+
+
+
+// //EndPoint: Filtra os alunos pelo Curso // status
+// app.get('/disciplina/:disciplinaAluno', cors(), async function(request, response, next){
+//     let idAlunoCurso = request.params.disciplinaAluno;
+//     let disciplina = getAlunoByCurso(idAlunoCurso);
+//     let infoDisciplina = {}
+
+//     if (disciplina) {
+//         infoDisciplina.disciplina = disciplina
+//         response.status(200)
+//         response.json(infoDisciplina)
+//     }else{
+//         response.status(404)
+//     }
+// })

@@ -1,52 +1,105 @@
 'use strict'
 
-import {mostrarAlunosCurso} from "./alunosApi.js"
-import {listarCursosTitle} from "./alunosApi.js"
+const curso = localStorage.getItem('curso')
 
-const curso = localStorage.getItem('curso');
-let alunos = await mostrarAlunosCurso(curso);
-let cursos = await listarCursosTitle()
+const mostrarCard = async (curso) =>{
+    const url = `http://localhost:5050/curso/${curso}`
+    const response = await fetch(url);
+    const data = await response.json()
 
-
-console.log(cursos);
-console.log(alunos);
-
-let titleContainer = '';
-
-cursos.forEach(item => {
-    if (item.sigla.toUpperCase() == curso) {
-        titleContainer = item.nome.split(' - ')[1].replace('Técnico em', '');
-
-    }
-});
-
-const insertTitle = () =>{
-    const title = document.querySelector('title')
-    title.textContent = titleContainer
+    return data
 }
 
-insertTitle();
+import { listarCursos } from "./cursosApi.js";
+import { filtrarStatus } from "./alunosApi.js"
+
+let {cursos} = await listarCursos()
+const { disciplina } = await mostrarCard(curso);
+
+console.log(disciplina)
+
+const titleInsert =  () =>{
+    const title = disciplina[0].nomeCurso.split('-')
+    return title[1]
+}
+document.querySelector('.title').textContent = titleInsert()
 
 
-
-const cardAluno = (data) => {
-    const cardsContainer = document.querySelector('#card');
-    const cards = document.createElement('div');
-    cards.classList.add('cards');
+const criarCard = async (item) => {
     
+    const container = document.querySelector('.card-aluno')
+    
+    const card = document.createElement('div');
+    card.classList.add('card')
     if (item.status.toLowerCase() == 'cursando') {
-        cards.classList.add('card-azul')
-    }else if (item.status.toLowerCase() == 'finalizado') {
-        cards.classList.add('card-amarelo')
+        card.classList.add('card-azul')
+    } else if(item.status.toLowerCase() == 'finalizado'){
+        card.classList.add('card-amarelo')
     }
+    
+    card.innerHTML = 
+    `
+    <img src="${item.foto}" class="foto-estudante">
+    <span class="nome">${item.nome}</span> 
+    `
+    container.appendChild(card)
 
-    cards.innerHTML = `
-    <img src"${item.foto}"class"foto-aluno">
-    <span class="aluno-nome">${item.nome.toUpperCase()}</span> `
+    card.addEventListener('click', (elemento)=>{
+        elemento.preventDefault();
+        const idAluno = card.id
 
+        localStorage.setItem('aluno', idAluno)
+
+        location.href = '../assents-thirdPage/index.html';
+    });
+   
 }
 
-cardsContainer.appendChild(cards)
+disciplina.forEach(criarCard)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import {mostrarAlunosCurso} from "./alunosApi.js"
+// import {listarCursosTitle} from "./alunosApi.js"
+
+
+// let alunos = await mostrarAlunosCurso();
+// let cursos = await listarCursosTitle()
+
+// console.log(alunos);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
